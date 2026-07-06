@@ -7,6 +7,7 @@ USE walmart2;
 */
 
 -- 1. Rank all departments within each store based on their total weekly sales.
+
 SELECT
     dept,
     SUM(weekly_sales) AS totalWeeklySales,
@@ -19,6 +20,7 @@ ORDER BY
     rankperDept ASC;
 
 -- 2. Show the top 3 departments in every store according to total sales.
+
 WITH ranking AS (
 	SELECT
 		store,
@@ -43,6 +45,7 @@ ORDER BY
     rankperDept ASC;
     
 -- 3. Find the bottom 5 departments in every store based on sales.
+
 SELECT
 	dept,
     SUM(weekly_sales) AS totalSales,
@@ -53,6 +56,7 @@ GROUP BY dept
 LIMIT 5;
 
 -- 4. Calculate the cumulative weekly sales for each store over time.
+
 WITH dailyStoreSales AS (
     SELECT
         store,
@@ -75,6 +79,7 @@ ORDER BY
     date ASC;
 
 -- 5. Divide all stores into four performance quartiles based on total sales.
+
 SELECT
 	store,
     SUM(weekly_sales) AS totalSales,
@@ -91,6 +96,7 @@ GROUP BY store
 ORDER BY totalSales DESC;
 
 -- 6. Find the department with the longest streak of increasing weekly sales.
+
 SELECT
     store,
     dept,
@@ -103,6 +109,7 @@ SELECT
 FROM train;
 
 -- 7. Identify stores whose weekly sales are consistently above their store average.
+
 WITH storeTotals AS (
     SELECT
         store,
@@ -126,6 +133,7 @@ WHERE totalSales > globalAvgTotalSales
 ORDER BY totalSales DESC;
 
 -- 8. Determine the percentage contribution of each department to its store's total sales.
+
 SELECT
     store,
     dept,
@@ -143,6 +151,7 @@ ORDER BY
     contributionPercentage DESC;
     
 -- 9. Calculate an 4-week moving average for every store.
+
 SELECT
     store,
     date,
@@ -166,6 +175,7 @@ ORDER BY
     date;
     
 -- 10 Identify stores whose sales fall into the top 20% every month.
+
 WITH storeMonthlySales AS (
     SELECT
         store,
